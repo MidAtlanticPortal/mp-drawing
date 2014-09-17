@@ -1,9 +1,9 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404
-from madrona.features.models import Feature
-from madrona.features import get_feature_by_uid
+from features.models import Feature
+from features.registry import get_feature_by_uid
 from models import *
-from simplejson import dumps
+from json import dumps
 
 
 '''

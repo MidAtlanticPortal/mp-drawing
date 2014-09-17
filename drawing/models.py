@@ -1,8 +1,8 @@
 from django.db import models
 from django.utils.html import escape
-from madrona.features import register
-from madrona.features.models import PolygonFeature
-from general.utils import sq_meters_to_sq_miles
+from features.registry import register
+from features.models import PolygonFeature
+from nursery.unit_conversions.unit_conversions import sq_meters_to_sq_miles
 
 @register
 class AOI(PolygonFeature):
@@ -15,7 +15,7 @@ class AOI(PolygonFeature):
     @property
     def formatted_area(self):
         return int((self.area_in_sq_miles * 10) +.5) / 10.
-     
+    
     @property
     def kml(self):
         return """
@@ -60,10 +60,6 @@ class AOI(PolygonFeature):
         </Style>
         """ % (self.model_uid(), self.fill_color(), self.outline_color())
      
-    @property
-    def area_in_sq_miles(self):
-        return sq_meters_to_sq_miles(self.geometry_final.area)
-        
     @property
     def serialize_attributes(self):
         from general.utils import format

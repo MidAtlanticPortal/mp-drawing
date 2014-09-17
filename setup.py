@@ -10,6 +10,7 @@ setup(
     name='mp-drawing',
     version='0.0.1',
     packages=['drawing'],
+    install_requires=['features'],
     include_package_data=True,
     license='TBD',
     description='Drawing for Marine Planner',
