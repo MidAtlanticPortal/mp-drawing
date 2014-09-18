@@ -1,5 +1,5 @@
 from django import forms
-from madrona.features.forms import FeatureForm, SpatialFeatureForm
+from features.forms import FeatureForm, SpatialFeatureForm
 from models import AOI, WindEnergySite
 
 class AOIForm(SpatialFeatureForm):
