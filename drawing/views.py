@@ -11,7 +11,7 @@ from json import dumps
 def get_drawings(request):
     json = []
     
-    drawings = AOI.objects.filter(user=request.user).order_by('date_created')
+    drawings = AOI.objects.filter(user=request.user.id).order_by('date_created')
     for drawing in drawings:
         sharing_groups = [group.name for group in drawing.sharing_groups.all()]
         json.append({
