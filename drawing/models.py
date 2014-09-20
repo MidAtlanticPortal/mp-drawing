@@ -6,7 +6,7 @@ from nursery.unit_conversions.unit_conversions import sq_meters_to_sq_miles
 
 @register
 class AOI(PolygonFeature):
-    description = models.TextField(null=True,blank=True)
+    description = models.TextField(null=True, blank=True)
     
     @property
     def area_in_sq_miles(self):
@@ -14,7 +14,7 @@ class AOI(PolygonFeature):
         
     @property
     def formatted_area(self):
-        return int((self.area_in_sq_miles * 10) +.5) / 10.
+        return int((self.area_in_sq_miles * 10) + .5) / 10.
     
     @property
     def kml(self):
@@ -34,9 +34,9 @@ class AOI(PolygonFeature):
             %s 
         </Placemark>
         """ % (self.uid, escape(self.name), self.model_uid(), 
-               escape(self.name), self.formatted_area, self.user, escape(self.description), 
-               self.Options.verbose_name, self.date_modified.replace(microsecond=0), 
-               self.geom_kml)
+               escape(self.name), self.formatted_area, self.user, 
+               escape(self.description), self.Options.verbose_name, 
+               self.date_modified.replace(microsecond=0), self.geom_kml)
 
     @property
     def kml_style(self):
@@ -62,9 +62,8 @@ class AOI(PolygonFeature):
      
     @property
     def serialize_attributes(self):
-        from general.utils import format
         attributes = []
-        attributes.append({'area': 'Area', 'data': '%s sq miles' %format(self.area_in_sq_miles, 1)})
+        attributes.append({'area': 'Area', 'data': '%.1f sq miles' % (self.area_in_sq_miles)})
         attributes.append({'description': 'Description', 'data': self.description})
         return { 'event': 'click', 'attributes': attributes }
     
@@ -88,7 +87,7 @@ class AOI(PolygonFeature):
 
 @register
 class WindEnergySite(PolygonFeature):
-    description = models.TextField(null=True,blank=True)
+    description = models.TextField(null=True, blank=True)
     
     @property
     def area_in_sq_miles(self):
@@ -96,7 +95,7 @@ class WindEnergySite(PolygonFeature):
         
     @property
     def formatted_area(self):
-        return int((self.area_in_sq_miles * 10) +.5) / 10.
+        return int((self.area_in_sq_miles * 10) + .5) / 10.
      
     @property
     def kml(self):
@@ -116,9 +115,9 @@ class WindEnergySite(PolygonFeature):
             %s 
         </Placemark>
         """ % (self.uid, escape(self.name), self.model_uid(), 
-               escape(self.name), self.formatted_area, self.user, escape(self.description), 
-               self.Options.verbose_name, self.date_modified.replace(microsecond=0), 
-               self.geom_kml)
+               escape(self.name), self.formatted_area, self.user, 
+               escape(self.description), self.Options.verbose_name, 
+               self.date_modified.replace(microsecond=0), self.geom_kml)
 
     @property
     def kml_style(self):

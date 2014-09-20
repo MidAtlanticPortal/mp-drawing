@@ -1,13 +1,13 @@
-from django.http import HttpResponse, Http404
-from django.shortcuts import get_object_or_404
 from features.models import Feature
 from features.registry import get_feature_by_uid
-from models import *
 from json import dumps
 
+from django.http import HttpResponse, Http404
+from django.shortcuts import get_object_or_404
 
-'''
-'''
+from models import AOI, WindEnergySite
+
+
 def get_drawings(request):
     json = []
     
@@ -41,15 +41,14 @@ def get_drawings(request):
         
     return HttpResponse(dumps(json))
 
-'''
-'''
+
 def delete_drawing(request, uid):
     try:
         drawing_obj = get_feature_by_uid(uid)
     except Feature.DoesNotExist:
         raise Http404
     
-    #check permissions
+    # check permissions
     viewable, response = drawing_obj.is_viewable(request.user)
     if not viewable:
         return response
@@ -58,26 +57,22 @@ def delete_drawing(request, uid):
     
     return HttpResponse("", status=200)
 
-'''
-'''
+
 def aoi_analysis(request, aoi_id):
     from aoi_analysis import display_aoi_analysis
     aoi_obj = get_object_or_404(AOI, pk=aoi_id)
-    #check permissions
+    # check permissions
     viewable, response = aoi_obj.is_viewable(request.user)
     if not viewable:
         return response
     return display_aoi_analysis(request, aoi_obj)
-    # Create your views here.
 
-'''
-'''
+
 def wind_analysis(request, wind_id):
     from wind_analysis import display_wind_analysis
     wind_obj = get_object_or_404(WindEnergySite, pk=wind_id)
-    #check permissions
+    # check permissions
     viewable, response = wind_obj.is_viewable(request.user)
     if not viewable:
         return response
     return display_wind_analysis(request, wind_obj)
-    # Create your views here.
