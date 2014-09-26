@@ -1,0 +1,1 @@
+-e git+git@bitbucket.org:point97/madrona-features.git@HEAD#egg=madrona_features-master

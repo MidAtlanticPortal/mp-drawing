@@ -10,7 +10,6 @@ setup(
     name='mp-drawing',
     version='0.0.1',
     packages=['drawing'],
-    install_requires=['features'],
     include_package_data=True,
     license='TBD',
     description='Drawing for Marine Planner',
@@ -19,7 +18,7 @@ setup(
     author='Point97, LLC',
     author_email='nobody@pointnineseven.com',
     classifiers=[
-        'Environment :: Web Development',
+        'Environment :: Web De  velopment',
         'Framework :: Django',
         'Intended Audience :: Developers',
         'License :: TBD',
