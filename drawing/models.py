@@ -6,6 +6,10 @@ from nursery.unit_conversions.unit_conversions import sq_meters_to_sq_miles
 
 @register
 class AOI(PolygonFeature):
+    class Meta:
+        verbose_name = 'AOI'
+        verbose_name_plural = 'AOIs'
+    
     description = models.TextField(null=True, blank=True)
     
     @property
