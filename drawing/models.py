@@ -67,8 +67,8 @@ class AOI(PolygonFeature):
     @property
     def serialize_attributes(self):
         attributes = []
-        attributes.append({'area': 'Area', 'data': '%.1f sq miles' % (self.area_in_sq_miles)})
-        attributes.append({'description': 'Description', 'data': self.description})
+        attributes.append({'title': 'Area', 'data': '%.1f sq miles' % (self.area_in_sq_miles)})
+        attributes.append({'title': 'Description', 'data': self.description})
         return { 'event': 'click', 'attributes': attributes }
     
     @classmethod
