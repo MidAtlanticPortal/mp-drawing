@@ -19,7 +19,7 @@ def get_drawings(request):
             'uid': drawing.uid,
             'name': drawing.name,
             'description': drawing.description,
-            'attributes': drawing.serialize_attributes,
+            'attributes': drawing.serialize_attributes(),
             'sharing_groups': sharing_groups
         })
         
@@ -33,7 +33,7 @@ def get_drawings(request):
                 'uid': drawing.uid,
                 'name': drawing.name,
                 'description': drawing.description,
-                'attributes': drawing.serialize_attributes,
+                'attributes': drawing.serialize_attributes(),
                 'shared': True,
                 'shared_by_username': username,
                 'shared_by_name': actual_name
