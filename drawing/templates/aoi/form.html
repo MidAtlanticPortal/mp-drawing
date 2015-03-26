@@ -1,4 +1,4 @@
-<div class="panel">
+<div class="featurepanel">
     <script type="text/javascript" charset="utf-8">
         madrona.onShow(function(){
             madrona.setupForm($('#polygon-design-form'));
@@ -139,21 +139,20 @@
                 </div>
             </div>
         </div>
+
+        <div class="wizard_nav">
+            <div class="btn-group pull-right">
+                <a href="#" class="button btn" onclick="this.blur(); return false;" id="button_prev"><span>&lt; Previous</span></a>
+                <a href="#" class="button btn button-next"  onclick="this.blur(); return false;" id="button_next"><span>Next &gt;</span></a>
+                <a href="#" class="submit_button button btn" onclick="this.blur(); return false;"><span>Save</span></a>
+            </div>
+        </div>
+
+        <div>
+            <div class="btn-group pull-left">
+                <a href="#" class="cancel_button button red btn"><span>Cancel</span></a>
+            </div>
+        </div>
     </form>
-
-
-    <div class="wizard_nav" style="width:100%">
-        <div class="btn-group pull-right">
-            <a href="#" class="button btn" onclick="this.blur(); return false;" id="button_prev"><span>&lt; Previous</span></a>
-            <a href="#" class="button btn button-next"  onclick="this.blur(); return false;" id="button_next"><span>Next &gt;</span></a>
-            <a href="#" class="submit_button button btn" onclick="this.blur(); return false;"><span>Save</span></a>
-        </div>
-    </div>
-
-    <div>
-        <div class="btn-group pull-left">
-            <a href="#" class="cancel_button button red btn"><span>Cancel</span></a>
-        </div>
-    </div>
 
 </div>
