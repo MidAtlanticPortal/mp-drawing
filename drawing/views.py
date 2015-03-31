@@ -42,20 +42,20 @@ def get_drawings(request):
     return HttpResponse(dumps(json))
 
 
-def delete_drawing(request, uid):
-    try:
-        drawing_obj = get_feature_by_uid(uid)
-    except Feature.DoesNotExist:
-        raise Http404
-    
-    # check permissions
-    viewable, response = drawing_obj.is_viewable(request.user)
-    if not viewable:
-        return response
-        
-    drawing_obj.delete()
-    
-    return HttpResponse("", status=200)
+# def delete_drawing(request, uid):
+#     try:
+#         drawing_obj = get_feature_by_uid(uid)
+#     except Feature.DoesNotExist:
+#         raise Http404
+#
+#     # check permissions
+#     viewable, response = drawing_obj.is_viewable(request.user)
+#     if not viewable:
+#         return response
+#
+#     drawing_obj.delete()
+#
+#     return HttpResponse("", status=200)
 
 
 def aoi_analysis(request, aoi_id):
