@@ -105,7 +105,7 @@
             <div data-bind="visible: showEdit()">
                 <p class="instructions">Click <b>Next</b> if you are satisfied with your shape.</p>
                 <p class="instructions">Click <b>Edit Shape</b> if you would like to make changes to your shape.</p>
-                <a class="btn" style="margin-top: 10px" data-bind="click: startEdit, css: { disabled: isEditing() }">
+                <a class="btn btn-default" style="margin-top: 10px" data-bind="click: startEdit, css: { disabled: isEditing() }">
                     <span>Edit Shape</span>
                 </a>
                 <p class="instructions">
@@ -114,7 +114,7 @@
                 <p class="instructions">
                     When you are done, click <b>Done Editing</b> below.
                 </p>
-                <a class="btn" style="margin-top: 10px" data-bind="click: completeEdit">
+                <a class="btn btn-default" style="margin-top: 10px" data-bind="click: completeEdit">
                     <span>Done Editing</span>
                 </a>
             </div>
@@ -143,14 +143,14 @@
         <div class="wizard_nav">
             <div class="btn-group pull-right">
                 <a href="#" class="btn btn-default" onclick="this.blur(); return false;" id="button_prev"><span>&lt; Previous</span></a>
-                <a href="#" class="btn btn-default button-next"  onclick="this.blur(); return false;" id="button_next"><span>Next &gt;</span></a>
-                <a href="#" class="submit_button btn btn-default" onclick="this.blur(); return false;"><span>Save</span></a>
+                <a href="#" class="btn btn-primary"  onclick="this.blur(); return false;" id="button_next"><span>Next &gt;</span></a>
+                <a href="#" class="submit_button btn btn-primary" onclick="this.blur(); return false;"><span>Save</span></a>
             </div>
         </div>
 
         <div>
             <div class="btn-group pull-left">
-                <a href="#" class="cancel_button btn btn-danger"><span>Cancel</span></a>
+                <a href="#" class="cancel_button btn btn-default"><span>Cancel</span></a>
             </div>
         </div>
     </form>
