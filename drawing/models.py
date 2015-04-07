@@ -64,7 +64,6 @@ class AOI(PolygonFeature):
         </Style>
         """ % (self.model_uid(), self.fill_color(), self.outline_color())
      
-    @property
     def serialize_attributes(self):
         attributes = []
         attributes.append({'title': 'Area', 'data': '%.1f sq miles' % (self.area_in_sq_miles)})
