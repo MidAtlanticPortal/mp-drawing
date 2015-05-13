@@ -88,7 +88,7 @@
             <p class="step-text"><i>Step 1 of 2 </i>
             <div data-bind="visible: ! showEdit()">
                 <p id="click-to-begin-drawing" class="instructions">Click the button below to begin drawing your polygon.</p>
-                <a class="btn btn-default" style="margin-top: 10px" data-bind="click: startSketch, css: { disabled: isDrawing() }">
+                <a class="btn btn-warning" style="margin-top: 10px" data-bind="click: startSketch, css: { disabled: isDrawing() }">
                     <span>Draw Shape</span>
                 </a>
             </div>
@@ -114,7 +114,7 @@
                 <p class="instructions">
                     When you are done, click <b>Done Editing</b> below.
                 </p>
-                <a class="btn btn-default" style="margin-top: 10px" data-bind="click: completeEdit">
+                <a class="btn btn-warning" style="margin-top: 10px" data-bind="click: completeEdit">
                     <span>Done Editing</span>
                 </a>
             </div>
