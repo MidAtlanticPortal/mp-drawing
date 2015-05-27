@@ -13,7 +13,10 @@ def get_drawings(request):
     
     drawings = AOI.objects.filter(user=request.user.id).order_by('date_created')
     for drawing in drawings:
-        sharing_groups = [group.name for group in drawing.sharing_groups.all()]
+        # Allow for "sharing groups" without an associated MapGroup, for "special" cases
+        sharing_groups = [group.mapgroup_set.get().name
+                          for group in drawing.sharing_groups.all()
+                          if group.mapgroup_set.exists()]
         json.append({
             'id': drawing.id,
             'uid': drawing.uid,
