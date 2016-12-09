@@ -1,25 +1,26 @@
 from django.db import models
 from django.utils.html import escape
 from features.registry import register
-from features.models import PolygonFeature
+from features.models import PolygonFeature, GeometryFeature
 from nursery.unit_conversions.unit_conversions import sq_meters_to_sq_miles
 
 @register
-class AOI(PolygonFeature):
+class AOI(GeometryFeature):
     class Meta:
         verbose_name = 'AOI'
         verbose_name_plural = 'AOIs'
-    
+
     description = models.TextField(null=True, blank=True)
-    
+
     @property
     def area_in_sq_miles(self):
-        return sq_meters_to_sq_miles(self.geometry_final.area)
-        
+        true_area = self.geometry_final.transform(2163, clone=True).area
+        return sq_meters_to_sq_miles(true_area)
+
     @property
     def formatted_area(self):
         return int((self.area_in_sq_miles * 10) + .5) / 10.
-    
+
     @property
     def kml(self):
         return """
@@ -35,11 +36,11 @@ class AOI(PolygonFeature):
                 <Data name="type"><value>%s</value></Data>
                 <Data name="modified"><value>%s</value></Data>
             </ExtendedData>
-            %s 
+            %s
         </Placemark>
-        """ % (self.uid, escape(self.name), self.model_uid(), 
-               escape(self.name), self.formatted_area, self.user, 
-               escape(self.description), self.Options.verbose_name, 
+        """ % (self.uid, escape(self.name), self.model_uid(),
+               escape(self.name), self.formatted_area, self.user,
+               escape(self.description), self.Options.verbose_name,
                self.date_modified.replace(microsecond=0), self.geom_kml)
 
     @property
@@ -63,27 +64,28 @@ class AOI(PolygonFeature):
             </LineStyle>
         </Style>
         """ % (self.model_uid(), self.fill_color(), self.outline_color())
-     
+
     def serialize_attributes(self):
         attributes = []
         attributes.append({'title': 'Area', 'data': '%.1f sq miles' % (self.area_in_sq_miles)})
         attributes.append({'title': 'Description', 'data': self.description})
         return { 'event': 'click', 'attributes': attributes }
-    
+
     @classmethod
     def fill_color(self):
-        return '776BAEFD'      
-    
+        return '776BAEFD'
+
     @classmethod
     def outline_color(self):
-        return '776BAEFD'       
+        return '776BAEFD'
 
     class Options:
         verbose_name = 'Area of Interest'
         icon_url = 'marco/img/aoi.png'
         export_png = False
         manipulators = []
-        optional_manipulators = ['clipping.manipulators.ClipToShoreManipulator']
+        # optional_manipulators = ['clipping.manipulators.ClipToShoreManipulator']
+        optional_manipulators = []
         form = 'drawing.forms.AOIForm'
         form_template = 'aoi/form.html'
         show_template = 'aoi/show.html'
@@ -91,15 +93,15 @@ class AOI(PolygonFeature):
 @register
 class WindEnergySite(PolygonFeature):
     description = models.TextField(null=True, blank=True)
-    
+
     @property
     def area_in_sq_miles(self):
         return sq_meters_to_sq_miles(self.geometry_final.area)
-        
+
     @property
     def formatted_area(self):
         return int((self.area_in_sq_miles * 10) + .5) / 10.
-     
+
     @property
     def kml(self):
         return """
@@ -115,11 +117,11 @@ class WindEnergySite(PolygonFeature):
                 <Data name="type"><value>%s</value></Data>
                 <Data name="modified"><value>%s</value></Data>
             </ExtendedData>
-            %s 
+            %s
         </Placemark>
-        """ % (self.uid, escape(self.name), self.model_uid(), 
-               escape(self.name), self.formatted_area, self.user, 
-               escape(self.description), self.Options.verbose_name, 
+        """ % (self.uid, escape(self.name), self.model_uid(),
+               escape(self.name), self.formatted_area, self.user,
+               escape(self.description), self.Options.verbose_name,
                self.date_modified.replace(microsecond=0), self.geom_kml)
 
     @property
@@ -146,12 +148,12 @@ class WindEnergySite(PolygonFeature):
 
     @classmethod
     def fill_color(self):
-        return '7776B9DE'      
-    
+        return '7776B9DE'
+
     @classmethod
     def outline_color(self):
-        return '7776B9DE'                
-    
+        return '7776B9DE'
+
     class Options:
         verbose_name = 'Wind Energy Site'
         icon_url = 'marco/img/wind.png'
