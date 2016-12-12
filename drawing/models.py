@@ -14,7 +14,8 @@ class AOI(PolygonFeature):
 
     @property
     def area_in_sq_miles(self):
-        return sq_meters_to_sq_miles(self.geometry_final.area)
+        true_area = self.geometry_final.transform(2163, clone=True).area
+        return sq_meters_to_sq_miles(true_area)
 
     @property
     def formatted_area(self):
