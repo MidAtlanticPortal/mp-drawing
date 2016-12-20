@@ -91,7 +91,7 @@ class AOI(GeometryFeature):
         show_template = 'aoi/show.html'
 
 @register
-class WindEnergySite(PolygonFeature):
+class WindEnergySite(GeometryFeature):
     description = models.TextField(null=True, blank=True)
 
     @property
