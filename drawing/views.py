@@ -9,8 +9,10 @@ from models import AOI, WindEnergySite
 
 
 def get_drawings(request):
+
+
     json = []
-    
+
     drawings = AOI.objects.filter(user=request.user.id).order_by('date_created')
     for drawing in drawings:
         # Allow for "sharing groups" without an associated MapGroup, for "special" cases
@@ -25,8 +27,12 @@ def get_drawings(request):
             'attributes': drawing.serialize_attributes(),
             'sharing_groups': sharing_groups
         })
-        
-    shared_drawings = AOI.objects.shared_with_user(request.user)
+
+    try:
+        shared_drawings = AOI.objects.shared_with_user(request.user)
+    except Exception as e:
+        import ipdb
+        ipdb.set_trace()
     for drawing in shared_drawings:
         if drawing not in drawings:
             username = drawing.user.username
@@ -41,7 +47,7 @@ def get_drawings(request):
                 'shared_by_username': username,
                 'shared_by_name': actual_name
             })
-        
+
     return HttpResponse(dumps(json))
 
 

@@ -1,11 +1,11 @@
 from django.db import models
 from django.utils.html import escape
 from features.registry import register
-from features.models import PolygonFeature
+from features.models import PolygonFeature, GeometryFeature
 from nursery.unit_conversions.unit_conversions import sq_meters_to_sq_miles
 
 @register
-class AOI(PolygonFeature):
+class AOI(GeometryFeature):
     class Meta:
         verbose_name = 'AOI'
         verbose_name_plural = 'AOIs'
@@ -84,13 +84,14 @@ class AOI(PolygonFeature):
         icon_url = 'marco/img/aoi.png'
         export_png = False
         manipulators = []
-        optional_manipulators = ['clipping.manipulators.ClipToShoreManipulator']
+        # optional_manipulators = ['clipping.manipulators.ClipToShoreManipulator']
+        optional_manipulators = []
         form = 'drawing.forms.AOIForm'
         form_template = 'aoi/form.html'
         show_template = 'aoi/show.html'
 
 @register
-class WindEnergySite(PolygonFeature):
+class WindEnergySite(GeometryFeature):
     description = models.TextField(null=True, blank=True)
 
     @property
