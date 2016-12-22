@@ -92,6 +92,28 @@
                     <span>Draw Shape</span>
                 </a>
             </div>
+            <div data-bind="visible: showEdit()">
+                <p class="instructions">Click <b>Next</b> if you are satisfied with your shape.</p>
+                <p class="instructions">Click <b>Edit Shape</b> if you would like to make changes to your shape.</p>
+                <p class="instructions">Click <b>Add Shape</b> if you would like to add more shapes to your drawing (multipolygon).</p>
+                <a class="btn btn-default" style="margin-top: 10px" data-bind="click: startEdit, css: { disabled: isEditing() }">
+                    <span>Edit Shape</span>
+                </a>
+                <a class="btn btn-default" style="margin-top: 10px" data-bind="click: startSketch, css: { disabled: isEditing() }">
+                    <span>Add Shape</span>
+                </a>
+                <div data-bind="visible: isEditing()">
+                    <p class="instructions">
+                        Click and drag the handles or vertices of the shape.
+                    </p>
+                    <p class="instructions">
+                        When you are done, click <b>Done Editing</b> below.
+                    </p>
+                    <a class="btn btn-warning" style="margin-top: 10px" data-bind="click: completeEdit">
+                        <span>Done Editing</span>
+                    </a>
+                </div>
+            </div>
             <div data-bind="visible: isDrawing()" style="padding-top: 20px" >
                 <div class="well">
                     <div>
@@ -101,22 +123,6 @@
                         Double-click to finish drawing.
                     </div>
                 </div>
-            </div>
-            <div data-bind="visible: showEdit()">
-                <p class="instructions">Click <b>Next</b> if you are satisfied with your shape.</p>
-                <p class="instructions">Click <b>Edit Shape</b> if you would like to make changes to your shape.</p>
-                <a class="btn btn-default" style="margin-top: 10px" data-bind="click: startEdit, css: { disabled: isEditing() }">
-                    <span>Edit Shape</span>
-                </a>
-                <p class="instructions">
-                    Click and drag the handles or vertices of the shape.
-                </p>
-                <p class="instructions">
-                    When you are done, click <b>Done Editing</b> below.
-                </p>
-                <a class="btn btn-warning" style="margin-top: 10px" data-bind="click: completeEdit">
-                    <span>Done Editing</span>
-                </a>
             </div>
             <div id="PanelGeometry"></div>
         </div>
