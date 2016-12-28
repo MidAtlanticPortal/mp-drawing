@@ -96,10 +96,10 @@
                 <p class="instructions">Click <b>Next</b> if you are satisfied with your shape.</p>
                 <p class="instructions">Click <b>Edit Shape</b> if you would like to make changes to your shape.</p>
                 <p class="instructions">Click <b>Add Shape</b> if you would like to add more shapes to your drawing (multipolygon).</p>
-                <a class="btn btn-default" style="margin-top: 10px" data-bind="click: startEdit, css: { disabled: isEditing() }">
+                <a class="btn btn-default" style="margin-top: 10px" data-bind="click: startEdit, css: { disabled: (isEditing() || isDrawing()) }">
                     <span>Edit Shape</span>
                 </a>
-                <a class="btn btn-default" style="margin-top: 10px" data-bind="click: startSketch, css: { disabled: isEditing() }">
+                <a class="btn btn-default" style="margin-top: 10px" data-bind="click: startSketch, css: { disabled: (isEditing() || isDrawing()) }">
                     <span>Add Shape</span>
                 </a>
                 <div data-bind="visible: isEditing()">
