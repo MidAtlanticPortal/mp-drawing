@@ -1,9 +1,9 @@
-from rpc4django import rpcmethod
-from features.registry import get_feature_by_uid
 
 
 @rpcmethod(login_required=True)
 def delete_drawing(uid, **kwargs):
+    from rpc4django import rpcmethod
+    from features.registry import get_feature_by_uid
     request = kwargs.get('request')
     drawing_obj = get_feature_by_uid(uid)
 
@@ -11,4 +11,3 @@ def delete_drawing(uid, **kwargs):
 
     if viewable:
         drawing_obj.delete()
-
