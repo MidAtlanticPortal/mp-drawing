@@ -27,7 +27,7 @@
                     if (validate(step)) {
                         step += 1;
                         app.viewModel.scenarios.drawingFormModel.completeEdit();
-                        $('#id_geometry_orig')[0].value = 'SRID=3857;' + new OpenLayers.Format.WKT().write(app.viewModel.scenarios.drawingFormModel.polygonLayer.features[0]);
+                        $('#id_geometry_orig')[0].value = 'SRID=3857;' + app.getLayerFeatureAsWKT(app.map.drawingLayer, 0);
                     }
                 } else if (step > 1 && action == 'prev') {
                     step -= 1;

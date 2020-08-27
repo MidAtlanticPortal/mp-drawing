@@ -1,4 +1,4 @@
-
+from rpc4django import rpcmethod
 
 @rpcmethod(login_required=True)
 def delete_drawing(uid, **kwargs):
